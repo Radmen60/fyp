@@ -33,11 +33,14 @@ router.get('/mine', requireAuth, async (req, res) => {
 router.get('/received', requireAuth, async (req, res) => {
   const isAdmin = req.user.role === 'admin';
   const { rows } = await query(
-    `SELECT bids.*, materials.title AS material_title, materials.owner_id,
+    `SELECT bids.*, materials.title AS material_title, materials.owner_id, materials.status AS material_status,
+            materials.estimated_value,
+            owneru.name AS owner_name,
             users.name AS bidder_name, users.role AS bidder_role,
             users.email AS bidder_email, users.phone AS bidder_phone, users.address AS bidder_address
      FROM bids
      JOIN materials ON bids.material_id = materials.id
+     JOIN users owneru ON materials.owner_id = owneru.id
      JOIN users ON bids.bidder_id = users.id
      ${isAdmin ? '' : 'WHERE materials.owner_id = $1'}
      ORDER BY bids.created_at DESC`,
@@ -137,6 +140,7 @@ router.post('/:id/complete', requireAuth, async (req, res) => {
     return res.status(400).json({ error: 'Only an accepted bid can be marked collected.' });
   }
 
+  await query(`UPDATE bids SET completed_at = now() WHERE id = $1`, [bid.id]);
   await query(`UPDATE materials SET status = 'collected' WHERE id = $1`, [bid.material_id]);
   res.json({ message: 'Marked as collected — diverted from landfill!' });
 });

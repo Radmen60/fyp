@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
-import { DashboardIcon, BoxIcon, Box2Icon, GavelIcon, UserIcon, AnalyticsIcon, LoginIcon, LogoutIcon, UserAddIcon } from '../icons.jsx';
+import { DashboardIcon, BoxIcon, Box2Icon, GavelIcon, ReceiptIcon, UserIcon, AnalyticsIcon, LoginIcon, LogoutIcon, UserAddIcon } from '../icons.jsx';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -33,6 +33,9 @@ export default function Navbar() {
             <NavLink to="/matches" className={({ isActive }) => `navbar__link ${isActive ? 'is-active' : ''}`}>
               <GavelIcon size={16} /> Bids
             </NavLink>
+            <NavLink to="/history" className={({ isActive }) => `navbar__link ${isActive ? 'is-active' : ''}`}>
+              <ReceiptIcon size={16} /> History
+            </NavLink>
             {user.role === 'admin' && (
               <>
                 <NavLink to="/users" className={({ isActive }) => `navbar__link ${isActive ? 'is-active' : ''}`}>
@@ -51,10 +54,10 @@ export default function Navbar() {
           </>
         ) : (
           <>
-            <NavLink to="/login" className={({ isActive }) => `navbar__link ${isActive ? 'is-active' : ''}`}>
+            <NavLink to="/login" className={({ isActive }) => `navbar__link btn--glow ${isActive ? 'is-active' : ''}`}>
               <LoginIcon size={16} /> Log in
             </NavLink>
-            <NavLink to="/register" className={({ isActive }) => `navbar__link ${isActive ? 'is-active' : ''}`}>
+            <NavLink to="/register" className={({ isActive }) => `navbar__link btn--glow ${isActive ? 'is-active' : ''}`}>
               <UserAddIcon size={16} /> Register
             </NavLink>
           </>

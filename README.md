@@ -47,13 +47,17 @@ npm run dev                    # starts API on http://localhost:4000
 **Upgrading an existing database?** If you created your `sweet_exchange`
 database before the bidding system existed, `schema.sql` alone won't add the
 new `bids` table or the `phone` column, and `matches` no longer has a
-`status` column. Run the migration once instead:
+`status` column. Run the migrations once, in order, instead:
 
 ```bash
-psql "$DATABASE_URL" -f migrate_v2.sql
+psql "$DATABASE_URL" -f migrate_v2.sql   # adds bids, phone, drops matches.status
+psql "$DATABASE_URL" -f migrate_v3.sql   # adds bids.completed_at (for transaction history)
 ```
 
-New installs can ignore `migrate_v2.sql` entirely — `schema.sql` already
+Already ran `migrate_v2.sql` before? Just run `migrate_v3.sql` on its own —
+both are safe to re-run.
+
+New installs can ignore both migration files entirely — `schema.sql` already
 includes everything.
 
 If you're using local Postgres with individual PGHOST/PGUSER/etc. fields
@@ -162,3 +166,11 @@ accepted or rejected directly. Instead:
 - `phone` is optional at registration and in Profile — it's only ever shown
   to the other party once a bid between them is accepted, same as email and
   address.
+- **Transaction history** (`/history`) shows only fully completed deals — a
+  bid that was accepted *and* whose material has been marked collected.
+  Sellers see who bought from them, buyers see who they bought from, and
+  admins see both sides of every transaction.
+- The footer (present on every page) has real routes behind its Terms of
+  Service and Privacy Policy links (`src/pages/Terms.jsx`,
+  `src/pages/Privacy.jsx`) — placeholder content written for this prototype,
+  not legal advice.

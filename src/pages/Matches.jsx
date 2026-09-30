@@ -6,7 +6,7 @@ import { GavelIcon } from '../icons.jsx';
 
 export default function Matches() {
   const { user } = useAuth();
-  const isBidder = user?.role && ['waste_collector', 'recycler', 'organisation', 'business'].includes(user.role);
+  const isBidder = user?.role && ['waste_collector', 'recycler', 'organisation'].includes(user.role);
   const [bids, setBids] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);

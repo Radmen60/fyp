@@ -46,6 +46,9 @@ button, input, select, textarea { font-family: inherit; color: inherit; }
 .page { max-width: 1080px; margin: 0 auto; padding: 32px 28px 72px; }
 .page--narrow { max-width: 480px; }
 
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.app-main { flex: 1; }
+
 /* ---------- Navbar ---------- */
 
 .navbar {
@@ -136,7 +139,36 @@ button, input, select, textarea { font-family: inherit; color: inherit; }
 .btn:disabled { opacity: 0.5; cursor: default; }
 
 .btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-.btn--primary:hover { background: #904730; border-color: #904730; }
+.btn--primary:hover { background: #7350B0; border-color: #7350B0; }
+
+/* Auth CTAs (Create account / Log in) glow a light green on hover, distinct
+   from the purple/blue used everywhere else — a clear "go" signal. */
+.btn--glow {
+  transition: box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.btn--glow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 10px 2px rgba(94, 222, 154, 0.55), 0 0 26px 10px rgba(94, 222, 154, 0.3);
+}
+
+.btn--glow.btn--primary:hover {
+  background: #4FCB86;
+  border-color: #4FCB86;
+  color: #0B0A16;
+}
+
+.btn--glow:not(.btn--primary):hover {
+  border-color: #4FCB86;
+  color: #4FCB86;
+  background: rgba(79, 203, 134, 0.1);
+}
+
+.navbar__link.btn--glow:hover {
+  background: rgba(79, 203, 134, 0.16);
+  color: #6BE3A0;
+  box-shadow: 0 0 8px 1px rgba(94, 222, 154, 0.5), 0 0 20px 8px rgba(94, 222, 154, 0.25);
+}
 
 .btn--good { background: var(--good); border-color: var(--good); color: #fff; }
 .btn--good:hover { background: #2e6142; border-color: #2e6142; }
@@ -478,4 +510,61 @@ table.data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 @media (max-width: 640px) {
   .field-row { grid-template-columns: 1fr; }
   .navbar { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+}
+
+.footer__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 28px 24px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 28px;
+}
+
+.footer__brand { display: flex; gap: 10px; align-items: flex-start; }
+
+.footer__mark {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  padding: 3px;
+  flex-shrink: 0;
+}
+.footer__mark img { width: 100%; height: 100%; object-fit: contain; }
+
+.footer__title { font-family: var(--font-display); font-weight: 700; font-size: 16px; margin: 0; }
+.footer__tagline { font-size: 12.5px; color: var(--muted); margin: 3px 0 0; max-width: 220px; }
+
+.footer__col { display: flex; flex-direction: column; gap: 8px; }
+.footer__heading { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 2px; }
+.footer__col a { font-size: 13.5px; color: var(--ink); text-decoration: none; display: flex; align-items: center; }
+.footer__col a:hover { color: var(--purple); }
+
+.footer__bottom {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 18px 28px 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.footer__bottom span { display: flex; align-items: center; }
+
+@media (max-width: 720px) {
+  .footer__inner { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
 }

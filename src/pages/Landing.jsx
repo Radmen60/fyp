@@ -17,8 +17,8 @@ export default function Landing() {
           a landfill.
         </p>
         <div className="landing-hero__actions">
-          <Link to="/register" className="btn btn--primary">Create an account</Link>
-          <Link to="/login" className="btn">Log in</Link>
+          <Link to="/register" className="btn btn--primary btn--glow">Create an account</Link>
+          <Link to="/login" className="btn btn--glow">Log in</Link>
         </div>
       </section>
 

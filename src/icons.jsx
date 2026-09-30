@@ -213,6 +213,24 @@ export function GavelIcon(props) {
   );
 }
 
+export function ClockIcon(props) {
+  return (
+    <IconBase {...props} rotate={-2}>
+      <circle cx="12" cy="12" r="8.3" />
+      <path d="M12 7.5v5l3.6 2" />
+    </IconBase>
+  );
+}
+
+export function ReceiptIcon(props) {
+  return (
+    <IconBase {...props} rotate={1.5}>
+      <path d="M6 3.5h12v17l-2.2-1.5-2 1.5-2-1.5-2 1.5-2-1.5L6 20.5z" />
+      <path d="M8.3 8h7.4M8.3 11.3h7.4M8.3 14.6h4.6" />
+    </IconBase>
+  );
+}
+
 export function HandTruckIcon(props) {
   return (
     <IconBase {...props} rotate={1}>

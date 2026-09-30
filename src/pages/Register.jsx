@@ -110,7 +110,7 @@ export default function Register() {
             </div>
           )}
 
-          <button className="btn btn--primary btn--block" disabled={busy}>
+          <button className="btn btn--primary btn--block btn--glow" disabled={busy}>
             {busy ? 'Creating account…' : 'Create account'}
           </button>
         </form>

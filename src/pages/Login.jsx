@@ -40,7 +40,7 @@ export default function Login() {
             Password
             <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
-          <button className="btn btn--primary btn--block" disabled={busy}>
+          <button className="btn btn--primary btn--block btn--glow" disabled={busy}>
             {busy ? 'Logging in…' : 'Log in'}
           </button>
         </form>

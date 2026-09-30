@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS bids (
   status            VARCHAR(20) NOT NULL DEFAULT 'pending', -- pending | accepted | rejected | withdrawn
   created_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
   responded_at      TIMESTAMPTZ,
+  completed_at      TIMESTAMPTZ,
   UNIQUE (material_id, bidder_id)
 );
 
