@@ -14,8 +14,8 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <NavLink to="/" className="navbar__brand">
-        <span className="navbar__mark"><img src="/logo.png" alt="SWEET" /></span>
-        SWEET Exchange
+        <span className="navbar__mark"><img src="/favicon-512.png" alt="SWEET" /></span>
+        Smart Waste Exchange and Eco-trading
       </NavLink>
 
       <nav className="navbar__links">
